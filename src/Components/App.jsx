@@ -5,13 +5,9 @@ import { ToastContainer } from "react-toastify";
 
 const App = () => {
 
-  const handleDataLoad = (data) => {
-    console.log("Data loaded in App component:", data);
-  };
-  
   return (
     <>
-      <FileUploader onDataLoad={handleDataLoad} />
+      <FileUploader />
       <GlobalStyle />
       <ToastContainer />
     </>

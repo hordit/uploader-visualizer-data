@@ -2,15 +2,14 @@ import React, { Suspense, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import Papa from "papaparse";
 import Table from "./Table";
-import PropTypes from "prop-types";
 import { StyledFileUploader } from "./FileUploader.styled";
 import { toast } from "react-toastify";
 import Filter from "./Filter";
-// import ChartStatistic from "./ChartStatistic";
+import ChartStatistic from "./ChartStatistic";
 
 const MAX_FILE_SIZE_MB = 1;
 
-const FileUploader = ({ onDataLoad }) => {
+const FileUploader = () => {
   const [fileData, setFileData] = useState([]);
   const [isButtonClicked, setButtonClicked] = useState(false);
   const [filter, setFilter] = useState("");
@@ -35,13 +34,11 @@ const FileUploader = ({ onDataLoad }) => {
               dynamicTyping: true,
               complete: (result) => {
                 setFileData(result.data);
-                onDataLoad(result.data);
               },
             });
           } else if (file.name.endsWith(".json")) {
             const jsonData = JSON.parse(reader.result);
             setFileData(jsonData);
-            onDataLoad(jsonData);
           } else {
             throw new Error("Unsupported file format");
           }
@@ -73,7 +70,7 @@ const FileUploader = ({ onDataLoad }) => {
         (value) => value && value.toString().toLowerCase().includes(inputValue)
       )
     );
-    
+
     setFiltredData(newFilteredData);
   };
 
@@ -81,7 +78,7 @@ const FileUploader = ({ onDataLoad }) => {
 
   const columns = React.useMemo(
     () =>
-    visibleFileData.length > 0
+      visibleFileData.length > 0
         ? Object.keys(visibleFileData[0]).map((key) => ({
             Header: key,
             accessor: key,
@@ -89,8 +86,6 @@ const FileUploader = ({ onDataLoad }) => {
         : [],
     [visibleFileData]
   );
-
-  console.log("Visible File Data:", visibleFileData);
 
   return (
     <StyledFileUploader>
@@ -112,17 +107,13 @@ const FileUploader = ({ onDataLoad }) => {
             <h4>Uploaded Data:</h4>
             <Suspense fallback={<div>Loading...</div>}>
               <Table columns={columns} data={visibleFileData} />
-              {/* <ChartStatistic fileData={visibleFileData}/> */}
+              <ChartStatistic fileData={visibleFileData} />
             </Suspense>
           </div>
         )}
       </div>
     </StyledFileUploader>
   );
-};
-
-FileUploader.propTypes = {
-  onDataLoad: PropTypes.func.isRequired,
 };
 
 export default FileUploader;
