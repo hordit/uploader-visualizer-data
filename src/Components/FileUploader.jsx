@@ -5,7 +5,8 @@ import Table from "./Table";
 import { StyledFileUploader } from "./FileUploader.styled";
 import { toast } from "react-toastify";
 import Filter from "./Filter";
-import ChartStatistic from "./ChartStatistic";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { Doughnut } from "react-chartjs-2";
 
 const MAX_FILE_SIZE_MB = 1;
 
@@ -87,6 +88,56 @@ const FileUploader = () => {
     [visibleFileData]
   );
 
+  const valuesSalary = visibleFileData.reduce((values, item) => {
+    Object.keys(item).forEach((key) => {
+      if (
+        key.toLocaleLowerCase().includes("salary") &&
+        item[key] !== null &&
+        !values.includes(item[key])
+      ) {
+        values.push(item[key]);
+      }
+    });
+    return values;
+  }, []);
+
+  const numericSalaries = valuesSalary.map((salary) => {
+    if (typeof salary === "number") {
+      return salary;
+    }
+    const cleanedSalaryString = salary.replace(/[^\d.]/g, "");
+    return parseFloat(cleanedSalaryString);
+  });
+
+  const sortedSalaries = numericSalaries.sort((a, b) => b - a);
+
+  ChartJS.register(ArcElement, Tooltip, Legend);
+
+  const maxSalary = 100000;
+  const medSalary = 60000;
+  const minSalary = 30000;
+
+  const colorBySalary = (salary) => {
+    if (salary >= maxSalary) return "#FF6384";
+    if (salary >= medSalary) return "#FFA07A";
+    if (salary >= minSalary) return "#FFD700";
+    return "#7CFC00";
+  };
+  
+  const data = {
+    datasets: [
+      {
+        label: "Salary",
+        data: sortedSalaries,
+        backgroundColor: sortedSalaries.map((salary) => colorBySalary(salary)),
+        borderColor: sortedSalaries.map((salary) =>
+          colorBySalary(salary).replace("0.2", "1")
+        ),
+        borderWidth: 0.5,
+      },
+    ],
+  };
+
   return (
     <StyledFileUploader>
       <h1>Data Visualization</h1>
@@ -107,7 +158,7 @@ const FileUploader = () => {
             <h4>Uploaded Data:</h4>
             <Suspense fallback={<div>Loading...</div>}>
               <Table columns={columns} data={visibleFileData} />
-              <ChartStatistic fileData={visibleFileData} />
+              <Doughnut data={data} />
             </Suspense>
           </div>
         )}
