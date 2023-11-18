@@ -105,7 +105,7 @@ const FileUploader = () => {
           <AiOutlineCloudUpload size={30} color="white" />
         </StyledButton>
       </DivContainer>
-      {visibleFileData.length > 0 && <Filter value={filter} onChange={handleFilter} />}
+     <Filter value={filter} onChange={handleFilter} />
       <div
         {...getRootProps()}
         style={{ display: isButtonClicked ? "block" : "none" }}
