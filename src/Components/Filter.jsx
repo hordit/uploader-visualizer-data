@@ -6,7 +6,10 @@ const Filter = ({value, onChange}) => {
         <ContainerInput>
             <label>
                 Fined by:
-                <StyledInput type="text" name="" value={value} onChange={onChange} />
+                <StyledInput 
+                type="text" 
+                name="" value={value} 
+                onChange={onChange}  />
             </label>
         </ContainerInput>
     );

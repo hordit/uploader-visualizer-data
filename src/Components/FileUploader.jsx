@@ -2,7 +2,11 @@ import React, { Suspense, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import Papa from "papaparse";
 import Table from "./Table";
-import { DivContainer, StyledButton, StyledFileUploader } from "./FileUploader.styled";
+import {
+  DivContainer,
+  StyledButton,
+  StyledFileUploader,
+} from "./FileUploader.styled";
 import { toast } from "react-toastify";
 import Filter from "./Filter";
 import ChartStatistic from "./ChartStatistic";
@@ -92,17 +96,16 @@ const FileUploader = () => {
     <StyledFileUploader>
       <h1>Data Visualization</h1>
       <DivContainer>
-      <p>
-        Upload a CSV or JSON file (max size: {MAX_FILE_SIZE_MB} MB) containing
-        data to see the results.
-      </p>
-      <StyledButton onClick={handleButtonClick}>
-       <span>Upload File</span> 
-       <AiOutlineCloudUpload size={30} color="white" />
+        <p>
+          Upload a CSV or JSON file (max size: {MAX_FILE_SIZE_MB} MB) containing
+          data to see the results.
+        </p>
+        <StyledButton onClick={handleButtonClick}>
+          <span>Upload File</span>
+          <AiOutlineCloudUpload size={30} color="white" />
         </StyledButton>
       </DivContainer>
-      
-      <Filter value={filter} onChange={handleFilter} />
+      {visibleFileData.length > 0 && <Filter value={filter} onChange={handleFilter} />}
       <div
         {...getRootProps()}
         style={{ display: isButtonClicked ? "block" : "none" }}
