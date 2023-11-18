@@ -4,7 +4,6 @@ import "modern-normalize";
 const GlobalStyle = createGlobalStyle`
 
 :root {
-  color-scheme: light dark;
   color: rgba(32, 34, 34, 0.87);
   background-color: #758f8baa;
 }
