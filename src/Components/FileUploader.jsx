@@ -19,6 +19,7 @@ const FileUploader = () => {
   const [isButtonClicked, setButtonClicked] = useState(false);
   const [filter, setFilter] = useState("");
   const [filtredData, setFiltredData] = useState([]);
+  const [filesUploaded, setFilesUploaded] = useState(false);
 
   const onDrop = (acceptedFiles) => {
     acceptedFiles.forEach((file) => {
@@ -54,6 +55,7 @@ const FileUploader = () => {
 
       reader.readAsText(file);
     });
+    setFilesUploaded(true);
   };
 
   const { getRootProps, getInputProps, open } = useDropzone({
@@ -105,7 +107,8 @@ const FileUploader = () => {
           <AiOutlineCloudUpload size={30} color="white" />
         </StyledButton>
       </DivContainer>
-     <Filter value={filter} onChange={handleFilter} />
+      {filesUploaded && <Filter value={filter} onChange={handleFilter} />}
+
       <div
         {...getRootProps()}
         style={{ display: isButtonClicked ? "block" : "none" }}
