@@ -1,7 +1,7 @@
-L'applicazione consente agli utenti di caricare file contenenti dati in formato JSON o CSV. Una volta caricato il file, l'applicazione utilizza la libreria PapaParse per analizzare i dati e visualizzarli in una tabella. Questa tabella offre una visualizzazione chiara e ordinata dei dati, facilitando la lettura e l'analisi.
+The application utilizes the React Dropzone library to allow users to easily upload files in both JSON and CSV formats. Once the file is uploaded, the application employs the PapaParse library to parse and display the data in a table. This table provides a clear and organized visualization of the data, making it easier for users to read and analyze.
 
-Inoltre, l'applicazione fornisce un campo di ricerca (Filter) che consente agli utenti di filtrare i dati in base a specifici criteri. Questa funzionalità è particolarmente utile per i responsabili delle risorse umane (HR) che desiderano trovare rapidamente candidati o informazioni specifiche all'interno dei dati caricati.
+Furthermore, the application provides a search field (Filter) that enables users to filter data based on specific criteria. This functionality is particularly beneficial for Human Resources (HR) professionals who wish to quickly find candidates or specific information within the uploaded data.
 
-Infine, l'applicazione include un grafico che rappresenta i dati relativi agli stipendi richiesti dai candidati. Il grafico fornisce una visualizzazione visiva delle distribuzioni salariali, consentendo agli utenti di ottenere un'analisi rapida e intuitiva delle informazioni.
+Finally, the application includes a chart representing data on salaries requested by candidates. The chart offers a visual representation of salary distributions, allowing users to obtain a quick and intuitive analysis of the information.
 
-In sintesi, l'applicazione offre un'esperienza completa per il caricamento, la visualizzazione e l'analisi dei dati relativi ai candidati, con strumenti interattivi come la tabella e il grafico per semplificare il processo decisionale per gli HR recruiter.
+In summary, the application offers a comprehensive experience for uploading, visualizing, and analyzing candidate data, with interactive tools such as the table and chart to streamline the decision-making process for HR recruiters.
