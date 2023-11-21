@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 import Filter from "./Filter";
 import ChartStatistic from "./ChartStatistic";
 import { AiOutlineCloudUpload } from "react-icons/ai";
-import ChartLinear from "./ChartLiner";
+// import ChartLinear from "./ChartLiner";
 
 
 const MAX_FILE_SIZE_MB = 1;
@@ -112,7 +112,7 @@ const FileUploader = () => {
           <AiOutlineCloudUpload size={30} color="white" />
         </StyledButton>
       </DivContainer>
-      {isButtonClicked && visibleFileData.length > 0 && (
+      {visibleFileData.length > 0 && (
         <Filter value={filter} onChange={handleFilter} />
       )}
       <div {...getRootProps()}>
@@ -121,7 +121,7 @@ const FileUploader = () => {
             <Suspense fallback={<div>Loading...</div>}>
               <Table columns={columns} data={visibleFileData} />
               <ChartStatistic visibleFileData={visibleFileData} />
-              <ChartLinear visibleFileData={visibleFileData} />
+              {/* <ChartLinear visibleFileData={visibleFileData} /> */}
             </Suspense>
           </div>
         )}
