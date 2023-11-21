@@ -11,14 +11,14 @@ import { toast } from "react-toastify";
 import Filter from "./Filter";
 import ChartStatistic from "./ChartStatistic";
 import { AiOutlineCloudUpload } from "react-icons/ai";
-// import ChartLinear from "./ChartLiner";
+import ChartLinear from "./ChartLiner";
 
 
 const MAX_FILE_SIZE_MB = 1;
 
 const FileUploader = () => {
   const [fileData, setFileData] = useState([]);
-  const [isButtonClicked, setButtonClicked] = useState(false);
+  // const [isButtonClicked, setButtonClicked] = useState(false);
   const [filter, setFilter] = useState("");
   const [filtredData, setFiltredData] = useState([]);
 
@@ -65,7 +65,7 @@ const FileUploader = () => {
 
   const handleButtonClick = () => {
     open();
-    setButtonClicked(true);
+    // setButtonClicked(true);
   };
 
   const handleFilter = (e) => {
@@ -121,7 +121,7 @@ const FileUploader = () => {
             <Suspense fallback={<div>Loading...</div>}>
               <Table columns={columns} data={visibleFileData} />
               <ChartStatistic visibleFileData={visibleFileData} />
-              {/* <ChartLinear visibleFileData={visibleFileData} /> */}
+              <ChartLinear visibleFileData={visibleFileData} />
             </Suspense>
           </div>
         )}
