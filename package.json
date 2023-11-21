@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "chart.js": "^4.4.0",
+    "lodash.debounce": "^4.0.8",
     "modern-normalize": "^2.0.0",
     "papaparse": "^5.4.1",
     "prop-types": "^15.8.1",

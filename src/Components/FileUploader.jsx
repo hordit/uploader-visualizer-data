@@ -13,6 +13,7 @@ import ChartStatistic from "./ChartStatistic";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import ChartLinear from "./ChartLiner";
 
+
 const MAX_FILE_SIZE_MB = 1;
 
 const FileUploader = () => {
@@ -71,13 +72,18 @@ const FileUploader = () => {
     const inputValue = e.target.value.toLowerCase();
     setFilter(inputValue);
 
+    
     const newFilteredData = fileData.filter((item) =>
       Object.values(item).some(
         (value) => value && value.toString().toLowerCase().includes(inputValue)
       )
     );
 
-    setFiltredData(newFilteredData);
+    if (newFilteredData.length === 0) {
+      setFiltredData(fileData);
+    } else {
+      setFiltredData(newFilteredData);
+    }
   };
 
   const visibleFileData = filter ? filtredData : fileData;
@@ -115,7 +121,7 @@ const FileUploader = () => {
             <Suspense fallback={<div>Loading...</div>}>
               <Table columns={columns} data={visibleFileData} />
               <ChartStatistic visibleFileData={visibleFileData} />
-              <ChartLinear visibleFileData={visibleFileData}/>
+              <ChartLinear visibleFileData={visibleFileData} />
             </Suspense>
           </div>
         )}
