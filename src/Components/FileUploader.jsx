@@ -18,9 +18,9 @@ const MAX_FILE_SIZE_MB = 1;
 
 const FileUploader = () => {
   const [fileData, setFileData] = useState([]);
-  // const [isButtonClicked, setButtonClicked] = useState(false);
   const [filter, setFilter] = useState("");
   const [filtredData, setFiltredData] = useState([]);
+  const [isButtonClicked, setButtonClicked] = useState(false);
 
   const onDrop = (acceptedFiles) => {
     acceptedFiles.forEach((file) => {
@@ -58,14 +58,14 @@ const FileUploader = () => {
     });
   };
 
-  const { getRootProps, open } = useDropzone({
+  const { getRootProps, getInputProps, open } = useDropzone({
     onDrop,
     noClick: true,
   });
 
   const handleButtonClick = () => {
     open();
-    // setButtonClicked(true);
+    setButtonClicked(true);
   };
 
   const handleFilter = (e) => {
@@ -115,7 +115,11 @@ const FileUploader = () => {
       {visibleFileData.length > 0 && (
         <Filter value={filter} onChange={handleFilter} />
       )}
-      <div {...getRootProps()}>
+       <div
+        {...getRootProps()}
+        style={{ display: isButtonClicked ? 'block' : 'none' }}
+      >
+        <input {...getInputProps()} />
         {visibleFileData.length > 0 && (
           <div>
             <Suspense fallback={<div>Loading...</div>}>
