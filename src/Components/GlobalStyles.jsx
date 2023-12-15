@@ -5,7 +5,7 @@ const GlobalStyle = createGlobalStyle`
 
 :root {
   color: rgba(32, 34, 34, 0.87);
-  background-color: #f8fafaaa;
+  background-color: #ffffff;
 }
 
 body {
